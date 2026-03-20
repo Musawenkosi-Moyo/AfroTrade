@@ -32,6 +32,8 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    private String orderId;
+
     @ManyToOne
     private User user;
 

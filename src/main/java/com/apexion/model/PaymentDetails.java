@@ -2,13 +2,10 @@ package com.apexion.model;
 
 import com.apexion.domain.PaymentStatus;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
+
 public class PaymentDetails {
 
     private String paymentId;
@@ -19,7 +16,7 @@ public class PaymentDetails {
 
     private String razorpayPaymentLinkStatus;
 
-    private String razorpayPaymentId;
+    private String razorpayPaymentIdZWSP;
 
-    private PaymentStatus paymentstatus;
+    private PaymentStatus status;
 }
