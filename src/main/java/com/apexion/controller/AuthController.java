@@ -19,14 +19,14 @@ public class AuthController {
     private final UserRepository userRepository;
 
     @PostMapping("/signup")
-    public ResponseEntity<User> createUserHandler(@RequestBody SignupRequest req){
+    public ResponseEntity<User> createUserHandler(@RequestBody SignupRequest req) {
 
         User user = new User();
         user.setEmail(req.getEmail());
         user.setFirstName(req.getFirstName());
         user.setLastName(req.getLastName());
 
-        User savedUser=userRepository.save(user);
+        User savedUser = userRepository.save(user);
 
         return ResponseEntity.ok(savedUser);
     }
