@@ -1,10 +1,14 @@
 package com.apexion.controller;
 
-import com.apexion.model.User;
-import com.apexion.repository.UserRepository;
+import com.apexion.domain.USER_ROLE;
+import com.apexion.model.VerificationCode;
+import com.apexion.request.LoginRequest;
+import com.apexion.response.ApiResponse;
+import com.apexion.response.AuthResponse;
 import com.apexion.response.SignupRequest;
+import com.apexion.service.AuthService;
+
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,18 +20,40 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class AuthController {
 
-    private final UserRepository userRepository;
+    private final AuthService authService;
 
     @PostMapping("/signup")
-    public ResponseEntity<User> createUserHandler(@RequestBody SignupRequest req) {
+    public ResponseEntity<AuthResponse> createUserHandler(@RequestBody SignupRequest req) throws Exception {
 
-        User user = new User();
-        user.setEmail(req.getEmail());
-        user.setFirstName(req.getFirstName());
-        user.setLastName(req.getLastName());
+        String jwt = authService.createUser(req);
 
-        User savedUser = userRepository.save(user);
+        AuthResponse res = new AuthResponse();
 
-        return ResponseEntity.ok(savedUser);
+        res.setJwt(jwt);
+        res.setMessage("User created successfully");
+        res.setRole(USER_ROLE.ROLE_CUSTOMER);
+
+        return ResponseEntity.ok(res);
     }
+
+    @PostMapping("/sent/login-signup-otp")
+    public ResponseEntity<ApiResponse> sentOtpHandler(@RequestBody VerificationCode req) throws Exception {
+
+        authService.sentLoginOtp(req.getEmail());
+
+        ApiResponse res = new ApiResponse();
+
+        res.setMessage("Otp sent successfully");
+
+        return ResponseEntity.ok(res);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<AuthResponse> loginHandler(@RequestBody LoginRequest req) throws Exception {
+
+        AuthResponse authResponse = authService.signing(req);
+
+        return ResponseEntity.ok(authResponse);
+    }
+
 }
