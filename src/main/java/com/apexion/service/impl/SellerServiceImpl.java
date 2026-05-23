@@ -1,5 +1,10 @@
 package com.apexion.service.impl;
 
+import java.util.List;
+
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
 import com.apexion.config.JwtProvider;
 import com.apexion.domain.AccountStatus;
 import com.apexion.domain.USER_ROLE;
@@ -10,11 +15,6 @@ import com.apexion.repository.SellerRepository;
 import com.apexion.service.SellerService;
 
 import lombok.RequiredArgsConstructor;
-
-import java.util.List;
-
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
@@ -149,7 +149,7 @@ public class SellerServiceImpl implements SellerService {
     public Seller verifyEmail(String email, String otp) throws Exception {
 
         Seller seller = getSellerByEmail(email);
-        seller.setEmailVerified(true);
+        seller.setIsEmailVerified(true);
         return sellerRepository.save(seller);
     }
 

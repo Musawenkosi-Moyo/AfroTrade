@@ -51,7 +51,7 @@ public class Seller {
 
     private USER_ROLE role = USER_ROLE.ROLE_SELLER;
 
-    private boolean isEmailVerified = false;
+    private Boolean isEmailVerified = false;
 
     private AccountStatus accountStatus = AccountStatus.PENDING_VERIFICATION;
 
