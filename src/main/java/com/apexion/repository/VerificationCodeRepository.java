@@ -6,6 +6,8 @@ import com.apexion.model.VerificationCode;
 
 public interface VerificationCodeRepository extends JpaRepository<VerificationCode, Long> {
 
-    public VerificationCode findByEmail(String email);
+    VerificationCode findByEmail(String email);
+
+    VerificationCode findByOtp(String otp);
 
 }

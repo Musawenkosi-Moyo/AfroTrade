@@ -2,6 +2,7 @@ package com.apexion.controller;
 
 import com.apexion.domain.USER_ROLE;
 import com.apexion.model.VerificationCode;
+import com.apexion.request.LoginOtpRequest;
 import com.apexion.request.LoginRequest;
 import com.apexion.response.ApiResponse;
 import com.apexion.response.AuthResponse;
@@ -37,9 +38,9 @@ public class AuthController {
     }
 
     @PostMapping("/sent/login-signup-otp")
-    public ResponseEntity<ApiResponse> sentOtpHandler(@RequestBody VerificationCode req) throws Exception {
+    public ResponseEntity<ApiResponse> sentOtpHandler(@RequestBody LoginOtpRequest req) throws Exception {
 
-        authService.sentLoginOtp(req.getEmail());
+        authService.sentLoginOtp(req.getEmail(), req.getRole());
 
         ApiResponse res = new ApiResponse();
 
