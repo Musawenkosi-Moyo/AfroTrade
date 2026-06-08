@@ -1,7 +1,5 @@
 package com.apexion.model;
 
-import org.antlr.v4.runtime.misc.NotNull;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,14 +26,12 @@ public class Category {
 
     private String name;
 
-    @NotNull
     @Column(unique = true)
     private String categoryId;
 
     @ManyToOne
     private Category parentCategory;
 
-    @NotNull
     private Integer level;
 
 }
