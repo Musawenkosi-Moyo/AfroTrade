@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.apexion.config.JwtProvider;
 import com.apexion.domain.AccountStatus;
 import com.apexion.domain.USER_ROLE;
+import com.apexion.exception.SellerException;
 import com.apexion.model.Address;
 import com.apexion.model.Seller;
 import com.apexion.repository.AddressRepository;
@@ -61,9 +62,9 @@ public class SellerServiceImpl implements SellerService {
     }
 
     @Override
-    public Seller getSellerById(Long id) throws Exception {
+    public Seller getSellerById(Long id) throws SellerException {
 
-        return sellerRepository.findById(id).orElseThrow(() -> new Exception("Seller not found"));
+        return sellerRepository.findById(id).orElseThrow(() -> new SellerException("Seller not found"));
     }
 
     @Override

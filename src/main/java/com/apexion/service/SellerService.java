@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.apexion.domain.AccountStatus;
 import com.apexion.model.Seller;
+import com.apexion.exception.SellerException;
+
 
 public interface SellerService {
 
@@ -11,7 +13,7 @@ public interface SellerService {
 
     Seller createSeller(Seller seller) throws Exception;
 
-    Seller getSellerById(Long id) throws Exception;
+    Seller getSellerById(Long id) throws SellerException;
 
     Seller updateSeller(Long id, Seller seller) throws Exception;
 

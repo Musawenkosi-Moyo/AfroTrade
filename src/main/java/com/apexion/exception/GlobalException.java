@@ -22,4 +22,15 @@ public class GlobalException {
 
     }
 
+        @ExceptionHandler(ProductException.class)
+        public ResponseEntity<ErrorDetails> productExceptionHandler(ProductException pe, WebRequest request ) {
+
+            ErrorDetails errorDetails = new ErrorDetails();
+            errorDetails.setError(pe.getMessage());
+            errorDetails.setMessage(request.getDescription(false));
+            errorDetails.setTimestamp(java.time.LocalDateTime.now());
+
+            return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
+        
+        }
 }
