@@ -2,6 +2,8 @@ package com.apexion.controller;
 
 import java.util.List;
 
+import com.apexion.model.SellerReport;
+import com.apexion.service.SellerReportService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,6 +40,8 @@ public class SellerController {
     private final VerificationCodeRepository verificationCodeRepository;
     private final SellerService sellerService;
     private final EmailService emailService;
+    private final SellerReportService  sellerReportService;
+
 
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> sentLoginOtp(@RequestBody LoginRequest request) throws Exception {
@@ -101,20 +105,17 @@ public class SellerController {
         return new ResponseEntity<>(seller, HttpStatus.OK);
     }
 
-    /*
-     * GetMapping("/report")
-     * public ResponseEntity<SellerReport> getSellerByJwt (
-     * 
-     * @RequestHeader("Authorization") String jwt) throws Exception {
-     * 
-     * 
-     * String email = jwtProvider.getEmailFromJwtToken(jwt);
-     * Seller seller = sellerService.getSellerProfile(jwt);
-     * SellerReport report = sellerReportService.getSellerReport(seller);
-     * return new ResponseEntity<>(seller, HttpStatus.OK);
-     * }
-     * 
-     */
+
+    @GetMapping("/report")
+    public ResponseEntity<SellerReport> getSellerByReport (
+     @RequestHeader("Authorization") String jwt) throws Exception {
+
+     Seller seller = sellerService.getSellerProfile(jwt);
+     SellerReport report = sellerReportService.getSellerReport(seller);
+     return new ResponseEntity<>(report, HttpStatus.OK);
+      }
+
+
 
     @GetMapping
     public ResponseEntity<List<Seller>> getAllSellers(
