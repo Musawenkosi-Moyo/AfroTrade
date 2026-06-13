@@ -1,13 +1,13 @@
-# AfroTrade - Multi-Vendor E-commerce Platform
+# AfroTrade E-commerce Platform
 
 AfroTrade is a scalable multi vendor e-commerce backend built using Spring Boot. It provides a comprehensive set of features for customers to browse and purchase products, and for sellers to manage their inventory and business details.
 
 ##  Features
 
 ###  Authentication & Security
-- **Unified Auth Service**: A custom `UserDetailsService` handles both standard users and sellers using a unique `seller_` prefix strategy for email-based login.
-- **JWT-based Authentication**: State-less security using JSON Web Tokens with embedded claims for `email` and `authorities`.
-- **Role-Based Access Control (RBAC)**: Supports roles for `ROLE_CUSTOMER`, `ROLE_SELLER`, and `ROLE_ADMIN`.
+- **Unified Auth Service**: A custom UserDetailsService handles both standard users and sellers using a uniqueseller_ prefix strategy for email-based login.
+- **JWT-based Authentication**: State-less security using JSON Web Tokens with embedded claims for email and authorities.
+- **Role-Based Access Control (RBAC)**: Supports roles for Customers, Sellers, and Admin.
 - **OTP Verification**: Email-based One-Time Password (OTP) for account verification and secure login.
 
 ### Seller Management
@@ -18,11 +18,11 @@ AfroTrade is a scalable multi vendor e-commerce backend built using Spring Boot.
 
 ###  Customer Experience
 - **Product Discovery**: Search and filter products by category, brand, color, size, and price.
-- **Smart Cart**: Automatic calculation of `totalSellingPrice`, `totalMrpPrice`, and `discount` across multiple items.
+- **Smart Cart**: Automatic calculation of totalSellingPrice and discount across multiple items.
 - **Wishlist Management**: Personalized product sets for future consideration.
 - **Review System**: Customers can provide feedback and ratings on products.
 
-### 💳 Order & Payment
+###  Order & Payment
 - **Order Processing**: Seamless transition from cart to order.
 - **Transaction Tracking**: Comprehensive logging of transactions linking Customers, Orders, and Sellers.
 
