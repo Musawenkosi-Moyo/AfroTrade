@@ -1,4 +1,4 @@
-package com.apexion.model;
+package com.apexion.domain;
 
 public enum OrderStatus {
 
@@ -10,4 +10,5 @@ public enum OrderStatus {
     CANCELLED,
     RETURNED,
     REFUNDED
+
 }
