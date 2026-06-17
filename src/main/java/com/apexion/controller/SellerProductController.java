@@ -1,16 +1,10 @@
 package com.apexion.controller;
 
-
-import com.apexion.exception.ProductException;
-import com.apexion.exception.SellerException;
 import com.apexion.model.Product;
 import com.apexion.model.Seller;
 import com.apexion.request.CreateProductRequest;
 import com.apexion.service.ProductService;
 import com.apexion.service.SellerService;
-import com.apexion.service.UserService;
-import jdk.jshell.spi.ExecutionControl;
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +21,8 @@ public class SellerProductController {
     private final SellerService sellerService;
 
     @GetMapping()
-    public ResponseEntity<List<Product>> getProductBySellerId(@RequestHeader("Authorization") String jwt) throws Exception {
+    public ResponseEntity<List<Product>> getProductBySellerId(@RequestHeader("Authorization") String jwt)
+            throws Exception {
 
         Seller seller = sellerService.getSellerProfile(jwt);
         List<Product> products = productService.getProductBySellerId(seller.getId());
@@ -44,7 +39,6 @@ public class SellerProductController {
         return new ResponseEntity<>(products, HttpStatus.CREATED);
 
     }
-
 
     @DeleteMapping("/{productId}")
     public ResponseEntity<Void> deleteProduct(@PathVariable Long productId) {

@@ -1,7 +1,6 @@
 package com.apexion.controller;
 
 import com.apexion.domain.USER_ROLE;
-import com.apexion.model.VerificationCode;
 import com.apexion.request.LoginOtpRequest;
 import com.apexion.request.LoginRequest;
 import com.apexion.response.ApiResponse;

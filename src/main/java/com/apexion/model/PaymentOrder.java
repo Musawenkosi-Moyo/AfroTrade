@@ -36,6 +36,8 @@ public class PaymentOrder {
 
     private PaymentMethod paymentMethod;
 
+    private String paymentLinkId;
+
     @ManyToOne
     private User user;
 

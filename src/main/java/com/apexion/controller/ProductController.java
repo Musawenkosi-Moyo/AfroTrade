@@ -3,10 +3,7 @@ package com.apexion.controller;
 import com.apexion.exception.ProductException;
 import com.apexion.model.Product;
 import com.apexion.service.ProductService;
-import com.apexion.service.SellerService;
-import com.apexion.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,12 +18,12 @@ public class ProductController {
 
     private final ProductService productService;
 
-   @GetMapping("/{productId}")
-   public ResponseEntity<Product> getProductById(@PathVariable Long productId) throws ProductException{
+    @GetMapping("/{productId}")
+    public ResponseEntity<Product> getProductById(@PathVariable Long productId) throws ProductException {
 
-       Product product = productService.findProductById(productId);
-       return new ResponseEntity<>(product, HttpStatus.OK);
-   }
+        Product product = productService.findProductById(productId);
+        return new ResponseEntity<>(product, HttpStatus.OK);
+    }
 
     @GetMapping("/search")
     public ResponseEntity<List<Product>> searchProduct(@RequestParam(required = false) String query) {
@@ -48,9 +45,10 @@ public class ProductController {
             @RequestParam(required = false) String stock,
             @RequestParam(defaultValue = "0") Integer pageNumber) {
 
-
         return new ResponseEntity<>(
-                productService.getAllProducts(category, brand, color, size, minPrice, maxPrice, minDiscount, sort, stock, pageNumber), HttpStatus.OK);
+                productService.getAllProducts(category, brand, color, size, minPrice, maxPrice, minDiscount, sort,
+                        stock, pageNumber),
+                HttpStatus.OK);
     }
 
 }

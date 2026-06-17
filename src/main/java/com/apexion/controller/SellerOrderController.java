@@ -1,6 +1,5 @@
 package com.apexion.controller;
 
-import com.apexion.domain.AccountStatus;
 import com.apexion.domain.OrderStatus;
 import com.apexion.model.Order;
 import com.apexion.model.Seller;
@@ -19,16 +18,15 @@ import java.util.List;
 public class SellerOrderController {
 
     private final OrderService orderService;
-    private  final SellerService sellerService;
+    private final SellerService sellerService;
 
-    //Lists all the orders related to the specific seller
+    // Lists all the orders related to the specific seller
     @GetMapping
     public ResponseEntity<List<Order>> getAllOrderHandler(
             @RequestHeader("Authorization") String jwt) throws Exception {
 
-      Seller sellers = sellerService.getSellerProfile(jwt);
-      List<Order> orders = orderService.sellersOrder(sellers.getId());
-
+        Seller sellers = sellerService.getSellerProfile(jwt);
+        List<Order> orders = orderService.sellersOrder(sellers.getId());
 
         return new ResponseEntity<>(orders, HttpStatus.ACCEPTED);
     }
@@ -39,8 +37,8 @@ public class SellerOrderController {
             @PathVariable Long orderId,
             @PathVariable OrderStatus orderStatus) throws Exception {
 
-        Order order = orderService.updateOrderStatus(orderId,orderStatus);
+        Order order = orderService.updateOrderStatus(orderId, orderStatus);
 
-        return  new ResponseEntity<>(order, HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(order, HttpStatus.ACCEPTED);
     }
 }
